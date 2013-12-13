@@ -1,4 +1,24 @@
 module ServiceBureau
+  # When mixed in to a class, it provides a handle for
+  # all configured services.
+  # It also provides an injector method for each service
+  # so that altenative implementations can be easily
+  # injected e.g. for testing.
+  #
+  # @example
+  #   ServiceBureau::Locations.configure do |c|
+  #     c.my_service MyService.public_method(:new)
+  #   end
+  #
+  #   Class MyClass
+  #     include ServiceBureau::Services
+  #   end
+  #
+  #   obj = MyClass.new
+  #   obj.my_service # => returns the result of: MyService.new
+  #
+  #   obj.my_service = double('a fake service')
+  #   obj.my_service # => returns the test double
   module Services
     def self.included(base)
       ServiceBureau::Locations.factory_map.keys.each do |service|
