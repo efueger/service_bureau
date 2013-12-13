@@ -1,5 +1,9 @@
 require "service_bureau/version"
+require "service_bureau/locations"
+require "service_bureau/locator"
+require "service_bureau/services"
 
 module ServiceBureau
-  # Your code goes here...
+  class UnknownServiceError < StandardError;end
+  class UncallableFactoryError < StandardError;end
 end
