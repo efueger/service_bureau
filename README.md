@@ -27,6 +27,8 @@ A factory can be any object that responds to `#call` - a Proc, lambda, method ob
 
 If your service requires arguments to initialize it, make sure the proc accepts them.
 
+If you are using Rails, this would go into an initializer.
+
 ```ruby
   ServiceBureau::Locations.configure do |config|
     config.my_service ->{ MyService.instance }
@@ -83,15 +85,18 @@ describe MyClass
 end
 ```
 
-### As a regular class method lookup
+### An instance method lookup
 ```ruby
 class MyClass
   def my_method
-    service = ServiceBureau::Locator.get_service(:my_service, 'any', 'arguments')
+    locator = ServiceBureau::Locator.new
+    service = locator.get_service(:my_service, 'any', 'arguments')
     result = service.do_something
   end
 end
 ```
+
+### Notes
 
 The handle to the instance will memoize it, and only instantiate it the first time it is called.
 If you need a new instance, you can use the injector to clear out the old one,
@@ -117,6 +122,66 @@ class MyClass
   end
 end
 ```
+
+### Rails Example with services that need services.
+
+Yo dawg! I heard you  like services, so I put a service in your service.
+This is helpful if you like keeping you application amde up of small, composable, well-focused pieces of functionality.
+```ruby
+  # config/initializers/services.rb
+  ServiceBureau::Locations.configure do |config|
+    config.my_service_a MyServiceA.public_method(:new)
+    config.my_service_b MyServiceB.public_method(:new)
+    config.my_service_c MyServiceC.public_method(:new)
+  end
+
+  # app/services/my_service_a.rb
+  class MyServiceA
+    def work
+      puts "service a"
+    end
+  end
+
+  # app/services/my_service_b.rb
+  class MyServiceB
+    include ServiceBureau::Services
+
+    def work
+      puts "service b"
+      puts my_service_c.work
+    end
+  end
+
+  # app/services/my_service_c.rb
+  class MyServiceC
+    def work
+      puts "service c"
+    end
+  end
+
+  # app/models/client.rb
+  class Client
+    include ServiceBureau::Services
+
+    def do_something
+      puts my_service_a.work
+      puts my_service_b.work
+    end
+  end
+```
+
+```
+> client = Client.new
+# => #<Client:0x007deadbeef000>
+> client.do_something
+
+# =>
+  service a
+
+  service b
+  service c
+```
+
 
 
 ## Contributing
