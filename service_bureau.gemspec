@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mattvanhorn@gmail.com"]
   spec.description   = %q{Something of a cross between a Service Locator and an Abstract Factory to enable easier use of the ServiceObject pattern.}
   spec.summary       = %q{An easy way to provide access to your service classes without creating a lot of coupling}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/mattvanhorn/service_bureau"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
