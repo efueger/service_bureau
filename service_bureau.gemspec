@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ServiceBureau::VERSION
   spec.authors       = ["Matt Van Horn"]
   spec.email         = ["mattvanhorn@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Something of a cross between a Service Locator and an Abstract Factory to enable easier use of the ServiceObject pattern.}
+  spec.summary       = %q{An easy way to provide access to your service classes without creating a lot of coupling}
   spec.homepage      = ""
   spec.license       = "MIT"
 
