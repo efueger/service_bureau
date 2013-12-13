@@ -39,6 +39,32 @@ describe ServiceBureau::Locator do
       end
     end
   end
+
+  describe '.get_service' do
+    it "gets a configured service" do
+      found_svc = ServiceBureau::Locator.get_service :some_service
+      expect(found_svc).to equal a_service_obj
+    end
+
+    it "instantiates a service with args given" do
+      expect(factory).to receive(:call).with('foo')
+      ServiceBureau::Locator.get_service :other_service, 'foo'
+    end
+
+    context 'when no service is registered' do
+      it "raises UnknownServiceError" do
+        expect{ ServiceBureau::Locator.get_service :no_such_svc }
+          .to raise_error(ServiceBureau::UnknownServiceError)
+      end
+    end
+
+    context 'when the factory registered is not callable' do
+      it "raises UncallableFactoryError" do
+        expect{ ServiceBureau::Locator.get_service :bones_mccoy }
+          .to raise_error(ServiceBureau::UncallableFactoryError)
+      end
+    end
+  end
 end
 
 describe ServiceBureau::Locations do

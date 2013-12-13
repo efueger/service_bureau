@@ -4,6 +4,11 @@ module ServiceBureau
       @service_factories = ServiceBureau::Locations.factory_map
     end
 
+    def self.get_service service_key, *args
+      @instance ||= new
+      @instance.get_service service_key, *args
+    end
+
     def get_service service_key, *args
       service_factories.fetch(service_key).call *args
 

@@ -96,6 +96,16 @@ class MyClass
 end
 ```
 
+### A class method lookup
+```ruby
+class MyClass
+  def my_method
+    service = ServiceBureau::Locator.get_service(:my_service, 'any', 'arguments')
+    result = service.do_something
+  end
+end
+```
+
 ### Notes
 
 The handle to the instance will memoize it, and only instantiate it the first time it is called.
