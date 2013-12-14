@@ -4,9 +4,13 @@ ServiceBureau provides an easy way to use extracted service objects, as describe
 by Bryan Helmkamp, in this great article on dealing with fat models: http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
 
 #### My Steenkin' Badges:
+
 [![Gem Version](https://badge.fury.io/rb/service_bureau.png)](http://badge.fury.io/rb/service_bureau)
-[![Build Status](https://api.tddium.com:443/mattvanhorn/service_bureau/badges/50761.png?badge_token=7c75b12de8d3359f0af9150228b263c32f38cf98)](https://api.tddium.com:443/mattvanhorn/service_bureau/suites/50761)
+[![Dependency Status](https://gemnasium.com/mattvanhorn/service_bureau.png)](https://gemnasium.com/mattvanhorn/service_bureau)
 [![Code Climate](https://codeclimate.com/github/mattvanhorn/service_bureau.png)](https://codeclimate.com/github/mattvanhorn/service_bureau)
+
+[![Build Status](https://api.tddium.com:443/mattvanhorn/service_bureau/badges/50761.png?badge_token=7c75b12de8d3359f0af9150228b263c32f38cf98)](https://api.tddium.com:443/mattvanhorn/service_bureau/suites/50761)
+
 ## Installation
 
 Add this line to your application's Gemfile:
