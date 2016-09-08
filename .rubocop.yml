@@ -4,8 +4,7 @@ AllCops:
 Lint/UnusedMethodArgument:
   Enabled: true
   Description: >-
-                 If it's necessary, use `_` or `_base` as an argument name to indicate that it won't be used.
-                 You can also write as `included(*)` if you want the method to accept any arguments but don't care about them.
+                 Checks for unused method arguments
   Exclude:
     - lib/service_bureau/services.rb
 
